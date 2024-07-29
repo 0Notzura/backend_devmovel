@@ -65,7 +65,7 @@ router.get('/user', auth, async (req, res) => {
 });
 
 router.get('/search', async (req, res) => {
-    const { title } = req.body;
+    const { title } = req.query;
     try {
         const posts = await Post.find({ title: { $regex: title, $options: 'i' } });
         res.json(posts);
