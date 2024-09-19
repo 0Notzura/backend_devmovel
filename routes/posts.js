@@ -3,6 +3,7 @@ const express = require('express');
 const jwt = require('jsonwebtoken');
 const Post = require('../models/post');
 const User = require('../models/user');
+const User2 = require('../models/user2');
 
 const router = express.Router();
 
@@ -25,7 +26,7 @@ const auth = (req, res, next) => {
 router.post('/', auth, async (req, res) => {
     const { contact, url, title, description } = req.body;
     try {
-        const user = await User.findById(req.user.id);
+        const user = await User2.findById(req.user.id);
         const newPost = new Post({
             user: user.id,
             contact,
