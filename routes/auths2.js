@@ -23,7 +23,7 @@ router.post('/register', async (req, res) => {
         const payload = { user: { id: user.id } };
         jwt.sign(payload, 'yourSecretKey', { expiresIn: '1h' }, (err, token) => {
             if (err) throw err;
-            res.json({ token });
+            res.json({ ...user._doc, token });
         });
     } catch (err) {
         console.error(err.message);
@@ -48,7 +48,7 @@ router.post('/login', async (req, res) => {
         const payload = { user: { id: user.id } };
         jwt.sign(payload, 'yourSecretKey', { expiresIn: '1h' }, (err, token) => {
             if (err) throw err;
-            res.json({ token });
+            res.json({ ...user._doc, token });
         });
     } catch (err) {
         console.error(err.message);
